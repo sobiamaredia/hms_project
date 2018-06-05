@@ -93,7 +93,7 @@ class Booking_model extends CI_Model{
 
     function update($id){
         if($this->field_validation() == TRUE){
-            $where =  array("reservation.reservationID" => $id);
+            $where =  array("reservationID" => $id);
             $data = $this->setReservationData();
             $this->db->trans_start();
             if($this->db->update('reservation', $data, $where)){
@@ -105,6 +105,7 @@ class Booking_model extends CI_Model{
                         $this->db->insert('booking', $booking_data);
                     }
                 }
+                $this->db->where($where)->where_not_in('roomID', $rooms)->delete('booking');
             }
             if ($this->db->trans_status() === FALSE){
                 $this->db->trans_rollback();

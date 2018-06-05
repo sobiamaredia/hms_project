@@ -29,7 +29,7 @@ class Bookings extends CI_Controller{
         if($this->input->post() &&(!isset($this->session->userdata["form_id"]) || $this->input->post("form_id") > $this->session->userdata["form_id"] )){
             $this->session->set_userdata(array("form_id"=>$this->input->post("form_id")));
             if($this->booking_model->create()){
-                return $this->redirect();
+                return redirect('bookings');
             }
             $this->error_message = 'Error in creating Booking';
         }

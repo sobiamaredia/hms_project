@@ -1,8 +1,6 @@
 <?php if(isset($this->error_message)){
     echo form_label($this->error_message,'',array('class'=>'help-block', 'style'=>'text-align:center;color:red;'));
-}
-    $booking_rooms = isset($_POST['rooms']) ? $_POST['rooms'] : isset($booking) ? explode(', ',$booking->roomID) : array();
-?>
+}?>
 <div class="form-group">
     <label class="col-sm-2 control-label no-padding-right" for="role"> Select Guest </label>
     <div class="col-xs-12 col-sm-5">
@@ -82,6 +80,8 @@
     $('#searchRoom').click(function(){
         var toDate = $('#toDate').val();
         var fromDate = $('#fromDate').val();
+        var booking_fromDate = '<?php echo isset($booking) ? $booking->checkinDate : ''; ?>';
+        var booking_toDate = '<?php echo isset($booking) ? $booking->checkoutDate : ''; ?>';
         var booked_rooms = <?php echo isset($booked_rooms) ? json_encode($booked_rooms): json_encode([]);?>;
         if(toDate !='' && fromDate !='' ){
             $.ajax({
@@ -91,11 +91,14 @@
                 success: function (response) {
                     var obj_json = JSON.parse(response);
                     $('#rooms').empty();
-                    if(booked_rooms.length > 0){
-                        $.each(booked_rooms, function(i, data){
-                            $('#rooms').append($('<option>').text(data.roomNumber+' ('+data.roomType+')').attr('value', data.roomID).attr('selected','selected'));
-                        });
+                    if(fromDate >= booking_fromDate && toDate <= booking_toDate ){
+                        if(booked_rooms.length > 0){
+                            $.each(booked_rooms, function(i, data){
+                                $('#rooms').append($('<option>').text(data.roomNumber+' ('+data.roomType+')').attr('value', data.roomID).attr('selected','selected'));
+                            });
+                        }
                     }
+                    
                     $.each(obj_json, function(i, data){
                         $('#rooms').append($('<option>').text(data.roomNumber+' ('+data.roomType+')').attr('value', data.roomID));
                     });
