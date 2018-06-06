@@ -82,7 +82,6 @@ class Booking_model extends CI_Model{
         return array(
             'reservationID' => $reservation_id,
             'roomID'        => $room_id,
-            'isCancelled'   => '0',
         );
     }
 
