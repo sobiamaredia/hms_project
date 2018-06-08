@@ -37,10 +37,11 @@
 		   <?php if(!$booking->reservationIsCancelled){
 			   echo '<td><span class="label label-success arrowed-in">Booked</span></td>';
 		   }else{
-			echo '<td><span class="label label-danger arrowed-in">Cancelled</span></td>';
+				echo '<td><span class="label label-danger arrowed-in">Cancelled</span></td>';
 		   } ?>
 		   
     	   <td align="center">
+		   <?php if(!$booking->reservationIsCancelled){?>
     	       <div class="hidden-sm hidden-xs btn-group">
     	           <a class="btn btn-xs btn-info" href="<?php echo site_url('bookings/edit/'.$booking->reservationID);?>">
 						<i class="ace-icon fa fa-pencil bigger-120"></i>
@@ -50,7 +51,8 @@
 						<i class="ace-icon fa fa-trash-o bigger-120"></i>
 					</a>
 				<div class="hidden-sm hidden-xs btn-group">
-    	   </td>
+			<?php } ?>
+		   </td>
     	</tr>
     	<?php
         }?>
