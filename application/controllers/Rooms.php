@@ -22,7 +22,6 @@ class Rooms extends CI_Controller{
             $toDate = $this->input->post('toDate');
             $param = array('where'=>"(reservation.checkinDate BETWEEN '$fromDate' AND '$toDate' OR reservation.checkoutDate BETWEEN '$fromDate' AND '$toDate') AND reservation.reservationIsCancelled = 0");
             $data['rooms'] = $this->room_model->getAvailableRooms($param);
-            $this->output->enable_profiler(TRUE);
 
         }
 
