@@ -13,8 +13,8 @@ class Bookings extends CI_Controller{
     function __construct() {
         parent::__construct();
         $this->load->model('bookings/booking_model');
-        $this->load->model('guests/guest_model');
-        $this->load->model('rooms/room_model');
+        //$this->load->model('guests/guest_model');
+        //$this->load->model('rooms/room_model');
     }
    
     function index(){
@@ -73,7 +73,7 @@ class Bookings extends CI_Controller{
                 return redirect('bookings');
             }
             
-            $this->error_message = 'Error in cancel Booking';
+            $this->error_message = 'Error in cancel Booking HAHAH';
         }
         redirect('404');
     }

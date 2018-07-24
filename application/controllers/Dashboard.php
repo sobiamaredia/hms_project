@@ -20,6 +20,8 @@ class Dashboard extends CI_Controller{
 
     $data['content'] = 'dashboard/analytics';
        $this->load->view('dashboard',$data);
+
+       //Thsi is temp change
     }
 }
 ?>

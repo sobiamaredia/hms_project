@@ -13,7 +13,7 @@ class Guests extends CI_Controller{
     function __construct() {
         parent::__construct();
         $this->load->model('guests/guest_model');
-
+        //temp comment
     }
    
     function index(){
